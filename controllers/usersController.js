@@ -84,6 +84,19 @@ async function login(req, res, next){
   }
 };
 
+
+
+//Update
+async function updateUser(req, res, next){
+
+
+}
+//Delete
+async function deleteUser(req, res, next){
+
+
+}
+
 //Message
 async function message(req, res, next){
   try {
@@ -129,6 +142,7 @@ async function message(req, res, next){
 module.exports = {
   registration,
   login,
-  message
-  
+  updateUser,
+  deleteUser,
+  message 
 };
