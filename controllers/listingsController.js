@@ -24,10 +24,10 @@ async function getListing(req, res, next){
 
 //Update
 async function updateListing(req, res, next){
-    const entryId = req.params.id;
+    const entryId = req.params.listingId;
     try {
-      await Listing.updateOne({ id: entryId }, req.body);
-      res.json({success: true, listing: updates });
+      await Listing.updateOne({ listingId: entryId }, req.body);
+      res.json({success: true, listingUpdates: req.body });
   
     }catch(e){
       console.log(e);
@@ -37,10 +37,10 @@ async function updateListing(req, res, next){
 
 //Delete
 async function deleteListing(req, res, next){
-    const entryId = req.params.id;
+    const entryId = req.params.listingId;
 
     try {
-        await Listing.deleteOne({id: entryId});
+        await Listing.deleteOne({listingId: entryId});
     } catch (err) {
         console.log(err);
         throw err;  
@@ -48,7 +48,7 @@ async function deleteListing(req, res, next){
   
     res.json({
         success: true,
-        message: `blog entry id ${entryId} deleted`
+        message: `Marketplace listing id ${entryId} deleted`
     })
 
 }

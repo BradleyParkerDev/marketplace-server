@@ -88,7 +88,14 @@ async function login(req, res, next){
 
 //Update
 async function updateUser(req, res, next){
+  const entryId = req.params.id;
+  try {
+    await User.updateOne({ id: entryId }, req.body);
+    res.json({success: true, userUpdates: req.body });
 
+  }catch(e){
+    console.log(e);
+  }
 
 }
 //Delete
