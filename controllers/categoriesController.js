@@ -8,6 +8,15 @@ async function createCategory(req, res, next){
 	res.json({ success: true });
 }
 
+async function getCategory(req, res, next){
+    try {
+        const allCategories = await Category.find({});
+        res.json({categories: allCategories });
+      }catch(e){
+        console.log(e);
+      }
+}
 module.exports = {
-    createCategory
+    createCategory,
+	getCategory
 }

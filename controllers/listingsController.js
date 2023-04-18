@@ -12,6 +12,15 @@ async function createListing(req, res, next){
 }
 
 //Read
+async function getAllListings(req, res, next){
+    try {
+        const singleListing = await Listing.find({});
+        res.json({listings: singleListing });
+      }catch(e){
+        console.log(e);
+      }
+
+}
 async function getListing(req, res, next){
     try {
         const singleListing = await Listing.find({listingId:req.params.listingId});
@@ -55,6 +64,7 @@ async function deleteListing(req, res, next){
 
 module.exports = {
     createListing,
+    getAllListings,
     getListing,
     updateListing,
     deleteListing
