@@ -11,7 +11,7 @@ const listingSchema = new mongoose.Schema({
     title: String,
     photos:[],
     description: String,
-    condition: ["new", "like new", "good", "fair"],
+    condition: ["New", "Used - Like New", "Used - Good", "Used - Fair"],
     price: Number,
     category: {
         type: mongoose.Schema.Types.ObjectId,
