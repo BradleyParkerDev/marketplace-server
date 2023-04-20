@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
     password: String,
     dob: Date,
     gender: String,
+    pronouns: String,
     joinedDate: { type: Date, default: Date.now }
 
 });

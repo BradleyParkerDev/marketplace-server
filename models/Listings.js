@@ -17,7 +17,7 @@ const listingSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Category"
     },
-    subCategories:[String],
+    subCategory:[String],
     email: String,
     phoneNumber: String,
     dateCreated: { type: Date, default: Date.now },
