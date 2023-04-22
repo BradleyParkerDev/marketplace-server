@@ -30,7 +30,15 @@ async function getListing(req, res, next){
       }
 
 }
+async function getListingsByCategory(req, res, next){
+  try {
+      const listings = await Listing.find({category:req.params.category});
+      res.json({listings: listings });
+    }catch(e){
+      console.log(e);
+    }
 
+}
 //Update
 async function updateListing(req, res, next){
     const entryId = req.params.listingId;
@@ -65,6 +73,7 @@ async function deleteListing(req, res, next){
 module.exports = {
     createListing,
     getAllListings,
+    getListingsByCategory,
     getListing,
     updateListing,
     deleteListing

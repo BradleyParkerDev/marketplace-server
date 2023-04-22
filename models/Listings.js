@@ -11,7 +11,7 @@ const listingSchema = new mongoose.Schema({
     title: String,
     photos:[],
     description: String,
-    condition: ["New", "Used - Like New", "Used - Good", "Used - Fair"],
+    condition: String,
     price: Number,
     category: {
         type: mongoose.Schema.Types.ObjectId,
@@ -24,13 +24,13 @@ const listingSchema = new mongoose.Schema({
     dateModified: Date,
 
     //For Vehicles
-    vehicleType: ["automobile","boat", "plane"],
+    vehicleType: String,
     make: String,
     model: String,
     year: Date,
 
     //For Properties
-    propertyType: ["Apartment", "Condo", "House", "Modular Home", "Townhome"],
+    propertyType: String,
     yearBuilt: Date,
     numberOfBedrooms: Number,
     numberOfBathrooms: Number,

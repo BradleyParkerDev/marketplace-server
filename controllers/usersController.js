@@ -12,15 +12,25 @@ const {
 //Registration
 async function registration(req, res, next) {
   try {
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
     const email = req.body.email;
     const password = req.body.password;
-
+    const dob = req.body.dob;
+    const gender = req.body.gender;
+    const pronouns = req.body.pronouns;
+    console.log(req.body)
     const saltRounds = 5; // In a real application, this number would be somewhere between 5 and 10
 
     const passwordHash = await generatePasswordHash(password, saltRounds);
 
     const newUser = new User({
+      firstName: firstName,
+      lastName: lastName,
       email: email,
+      dob: dob,
+      gender: gender,
+      pronouns: pronouns,
       password: passwordHash,
       id: uuid(), // uid stands for User ID. This will be a unique string that we will can to identify our user
     });
@@ -29,7 +39,6 @@ async function registration(req, res, next) {
     //mongoose
     const insertResult = await newUser.save();
 
-    // const insertResult = await db().collection("users").insertOne(user);
 
     res.json({ success: true });
   } catch (error) {
