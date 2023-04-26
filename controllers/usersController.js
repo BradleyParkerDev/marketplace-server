@@ -85,7 +85,8 @@ async function login(req, res, next){
 
     const token =  generateUserToken(data);
     const userFirstName = user.firstName
-    res.json({ success: true, token, email, userType,  userFirstName});
+    const userId = user.id
+    res.json({ success: true, token, email, userType,  userFirstName, userId});
     console.log(token)
 
     return;

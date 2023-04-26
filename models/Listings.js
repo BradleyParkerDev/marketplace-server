@@ -45,8 +45,8 @@ const listingSchema = new mongoose.Schema({
     yearBuilt: String,
     numberOfBedrooms: Number,
     numberOfBathrooms: Number,
-    hasBasment: String,
-    hasGarage: String
+    hasBasement: Boolean,
+    hasGarage: Boolean
 
 });
 
