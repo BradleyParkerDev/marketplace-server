@@ -79,11 +79,13 @@ async function login(req, res, next){
       date: new Date(),
       userId: user.id, 
       scope: userType,
+
 			email: email
     };
 
     const token =  generateUserToken(data);
-    res.json({ success: true, token, email, userType });
+    const userFirstName = user.firstName
+    res.json({ success: true, token, email, userType,  userFirstName});
     console.log(token)
 
     return;

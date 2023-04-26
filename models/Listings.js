@@ -4,12 +4,13 @@ const { v4: uuidv4 } = require("uuid");
 
 const listingSchema = new mongoose.Schema({
     listingId: {type: String, default: uuidv4},
+    listingType: String,
     createdBy:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
     title: String,
-    photos:[],
+    listingImages:[],
     description: String,
     condition: String,
     price: Number,
@@ -27,15 +28,25 @@ const listingSchema = new mongoose.Schema({
     vehicleType: String,
     make: String,
     model: String,
-    year: Date,
+    year: String,
+    color: String,
+    milesDriven: String,
+    transmission: String,
+    minMpg: String,
+    maxMpg: String,
 
     //For Properties
+    listingPropertyType: String,
     propertyType: String,
-    yearBuilt: Date,
+    streetAddress: String,
+    city: String,
+    state: String,
+    zipcode: String,
+    yearBuilt: String,
     numberOfBedrooms: Number,
     numberOfBathrooms: Number,
-    hasBasment: Boolean,
-    hasGarage: Boolean
+    hasBasment: String,
+    hasGarage: String
 
 });
 
