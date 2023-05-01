@@ -3,14 +3,15 @@ const { v4: uuidv4 } = require("uuid");
 
 
 const listingSchema = new mongoose.Schema({
-    listingId: {type: String, default: uuidv4},
+    listingUserId: {type: String},
+
     listingType: String,
     createdBy:{
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
     title: String,
-    listingImages:[],
+    listingImages:String,
     description: String,
     condition: String,
     price: Number,

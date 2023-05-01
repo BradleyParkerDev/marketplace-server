@@ -30,6 +30,15 @@ async function getListing(req, res, next){
       }
 
 }
+async function getListingByUserId(req, res, next){
+  try {
+      const Listings = await Listing.find({listingUserId:req.params.listingUserId});
+      res.json({listings: Listings });
+    }catch(e){
+      console.log(e);
+    }
+
+}
 async function getListingsByCategory(req, res, next){
   try {
       const listings = await Listing.find({category:req.params.category});
@@ -73,6 +82,7 @@ async function deleteListing(req, res, next){
 module.exports = {
     createListing,
     getAllListings,
+    getListingByUserId,
     getListingsByCategory,
     getListing,
     updateListing,

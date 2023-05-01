@@ -96,14 +96,40 @@ async function login(req, res, next){
   }
 };
 
+async function getUser(req, res, next){
+  try {
+      const user = await User.findOne({id:req.params.id});
+      res.json({user: user });
+    }catch(e){
+      console.log(e);
+    }
 
+}
 
 //Update
 async function updateUser(req, res, next){
   const entryId = req.params.id;
   try {
-    await User.updateOne({ id: entryId }, req.body);
-    res.json({success: true, userUpdates: req.body });
+
+    const updatedBody = {
+      userImage: req.body.url,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      dob: req.body.dob,
+      gender: req.body.genderValue,
+      pronouns: req.body.pronouns
+    }
+    if(req.body.password !== ""){
+      const saltRounds = 5; // In a real application, this number would be somewhere between 5 and 10
+      const passwordHash = await generatePasswordHash(password, saltRounds);
+      updatedBody.password = passwordHash;
+    }
+
+    const response = await User.updateOne({ id: entryId }, updatedBody);
+
+
+    res.json({success: true, userUpdates: response });
 
   }catch(e){
     console.log(e);
@@ -112,7 +138,19 @@ async function updateUser(req, res, next){
 }
 //Delete
 async function deleteUser(req, res, next){
+  const entryId = req.params.id;
 
+  try {
+      await User.deleteOne({id: entryId});
+  } catch (err) {
+      console.log(err);
+      throw err;  
+  }
+
+  res.json({
+      success: true,
+      message: `user with id ${entryId} deleted`
+  })
 
 }
 
@@ -161,6 +199,7 @@ async function message(req, res, next){
 module.exports = {
   registration,
   login,
+  getUser,
   updateUser,
   deleteUser,
   message 
