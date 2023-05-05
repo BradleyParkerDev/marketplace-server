@@ -16,7 +16,7 @@ async function registration(req, res, next) {
     const lastName = req.body.lastName;
     const email = req.body.email;
     const password = req.body.password;
-    const dob = req.body.dob;
+    // const dob = req.body.dob;
     const gender = req.body.gender;
     const pronouns = req.body.pronouns;
     console.log(req.body)
@@ -28,7 +28,7 @@ async function registration(req, res, next) {
       firstName: firstName,
       lastName: lastName,
       email: email,
-      dob: dob,
+      // dob: dob,
       gender: gender,
       pronouns: pronouns,
       password: passwordHash,
@@ -110,23 +110,13 @@ async function getUser(req, res, next){
 async function updateUser(req, res, next){
   const entryId = req.params.id;
   try {
-
-    const updatedBody = {
-      userImage: req.body.url,
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      dob: req.body.dob,
-      gender: req.body.genderValue,
-      pronouns: req.body.pronouns
-    }
     if(req.body.password !== ""){
       const saltRounds = 5; // In a real application, this number would be somewhere between 5 and 10
       const passwordHash = await generatePasswordHash(password, saltRounds);
-      updatedBody.password = passwordHash;
+      req.body.password = passwordHash;
     }
 
-    const response = await User.updateOne({ id: entryId }, updatedBody);
+    const response = await User.updateOne({ id: entryId }, req.body);
 
 
     res.json({success: true, userUpdates: response });

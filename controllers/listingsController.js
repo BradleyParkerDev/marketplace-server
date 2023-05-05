@@ -23,7 +23,7 @@ async function getAllListings(req, res, next){
 }
 async function getListing(req, res, next){
     try {
-        const singleListing = await Listing.find({listingId:req.params.listingId});
+        const singleListing = await Listing.findOne({listingId:req.params.listingId});
         res.json({listing: singleListing });
       }catch(e){
         console.log(e);
