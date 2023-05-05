@@ -110,15 +110,14 @@ async function getUser(req, res, next){
 async function updateUser(req, res, next){
   const entryId = req.params.id;
   try {
-    if(req.body.password !== ""){
+    if(req.body.password !== "")
+    {
       const saltRounds = 5; // In a real application, this number would be somewhere between 5 and 10
-      const passwordHash = await generatePasswordHash(password, saltRounds);
+      const passwordHash = await generatePasswordHash(req.body.password, saltRounds);
       req.body.password = passwordHash;
     }
-
+    console.log(req.body)
     const response = await User.updateOne({ id: entryId }, req.body);
-
-
     res.json({success: true, userUpdates: response });
 
   }catch(e){
@@ -126,6 +125,7 @@ async function updateUser(req, res, next){
   }
 
 }
+
 //Delete
 async function deleteUser(req, res, next){
   const entryId = req.params.id;
